@@ -1,0 +1,58 @@
+#chat3 .form-control {
+border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+border-color: transparent;
+box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+border-radius: 50%;
+height: 10px;
+width: 10px;
+margin-left: 2.5rem;
+margin-top: -.85rem;
+}
+.chat-avatar{
+  width: 50px;
+  height: 50px;
+  border-radius:50%;
+}
+.chat-avatar1{
+
+  width: 30px;
+
+  height: 30px;
+  border-radius:50%;
+}
+.chat-actions>span{
+margin: 3px;  
+}
+@media screen and (max-width: 480px) {
+    #chat-box{
+      display: none;
+    }
+    .chat-box-header{
+      position: fixed;
+      top: 0px;
+      z-index: 200;
+    }
+    .chat-box-footer{
+     position:fixed;
+     bottom: 0px;
+    }
+    .chat-box-back-button{
+      display:block;
+    }
+}
+
+
+
+@media screen and (min-width: 480px) {
+   .chat-box-back-button{
+
+      display:none;
+
+    }
+}

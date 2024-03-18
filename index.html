@@ -1,0 +1,136 @@
+<html>
+ 
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="static/css/mdb.min.css" >
+<link href="static/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" >
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+<!--for ossar 
+<div class="page-wrapper">
+<div class="page-content-tab">
+-->
+
+  <div class="row" id="app">
+    <div class="col-md-6 col-lg-5 mb-4 mb-md-0 border-end" id="chat-list" >
+ <div class=" container mt-3 border-bottom input-group rounded mb-2">
+
+ <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+aria-describedby="search-addon" />
+   <span class="input-group-text border-0" id="search-addon">
+       <i class="bi bi-search"></i>
+                    </span>
+                  </div>
+ <div class="p-3" style="overflow: auto">
+   <ul id="chat-list-items" class="list-unstyled mb-0">
+<!-- chats -->
+   </ul>
+  </div>
+ </div>
+
+ <div class="col-md-6 col-lg-7 " id="chat-box">
+<!--Chatbox-->
+<div class="text-center fs-2 text-primary fw-bold" style="margin-top:40%">Click a Chat to get started <span class="fs-4 bi bi-chat-right-text-fill"></span></div>
+<!--Chatbox-- ends-->
+  </div>
+ </div>
+
+      
+    <!--for ossar
+</div>
+  </div>
+  -->
+
+<script src="static/js/jquery.min.js" defer ></script>
+  <script src="static/js/ejs.min.js" ></script>
+  <script src="static/js/chat-ui.js"></script>
+ <script defer >
+  let me={
+    id:3 
+  }
+  let messages =[ 
+        {
+
+      from:1,
+
+      type:'text',
+      message:'hello',
+      time:'7:00AM'
+      
+    },
+    {
+      from:1,
+      type:'text',
+      message:'hi there',
+      time:'7:00AM'
+      
+    },
+    {
+       to:1,
+     type:'text',
+   message:'hi',
+      time:'7:00AM'
+    }
+  
+  ]
+  //on chats we want last message only
+  let chatData=[
+    
+    {
+      userID:1,
+      name:'Sam Doe',
+      type:'text',
+    message:'hi',
+      image:'1.jpg',
+      time:'',
+      status:'online',
+      unread:1
+    },
+        {
+      userID:2,
+      name:'John Doe',
+      message:'thanks for your support',
+      image:'2.jpg',
+      time:'',
+      status:'online',
+      unread:3
+    },
+    ]
+ let isMobile = (screen.width<480) ? true:false;
+ if(isMobile){
+   document.getElementById('app').toggleAttribute('class');
+ }
+ renderChats(chatData);
+ 
+function send(){
+let d = new Date()
+var time = [d.getHours(),d.getMinutes()].join(':');
+ form=document.querySelector('#toSend');
+let message ={ 
+  message: form['1'].value,
+  time
+};
+let ui=ejs.render(` <div class="d-flex flex-row justify-content-end">
+                    <div>
+    <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"><%= message.message %>
+    </p>
+    <p class="small me-3 mb-3 rounded-3 text-muted"><%= message.time%></p>
+                    </div>
+                    
+                  </div>`,{message})
+
+if(form['1'].value!=''){
+  $('#chat-box-messages').append(ui);
+form['1'].value='';
+}
+let elm = document.querySelector('#chat-box');
+elm.scrollTop=elm.scrollHeight;
+    }
+    
+   
+  </script>
+  </body>
+  </html>
